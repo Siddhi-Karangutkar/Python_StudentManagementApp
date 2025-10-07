@@ -1,0 +1,156 @@
+<html>
+  <head>
+    <title>Student Management System</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Poppins", Arial, sans-serif;
+        background: #f4f6fc;
+        color: #222;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .nav {
+        width: 100%;
+        background: #0078d7;
+        padding: 15px 0;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 70px;
+        font-size: 16px;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .nav a:hover {
+        color: #cce6ff;
+      }
+
+      h1 {
+        color: #0078d7;
+        margin-top: 40px;
+        font-size: 28px;
+        letter-spacing: 1px;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 80%;
+        margin-top: 20px;
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      th, td {
+        padding: 14px 18px;
+        text-align: center;
+        font-size: 15px;
+        border-bottom: 1px solid #e5e7eb;
+      }
+
+      th {
+        background: #0078d7;
+        color: white;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+      }
+
+      tr:hover {
+        background: #f1f8ff;
+        transition: background 0.3s ease;
+      }
+
+      button {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: all 0.3s ease;
+      }
+
+      button:hover {
+        transform: translateY(-2px);
+      }
+
+      a[href^="/edit"] button {
+        background: #0078d7;
+        color: white;
+      }
+
+      a[href^="/edit"] button:hover {
+        background: #005fa3;
+      }
+
+      a[href^="/delete"] button {
+        background: #e63946;
+        color: white;
+      }
+
+      a[href^="/delete"] button:hover {
+        background: #b71c1c;
+      }
+
+      @media (max-width: 768px) {
+        table {
+          width: 95%;
+          font-size: 14px;
+        }
+
+        th, td {
+          padding: 10px;
+        }
+
+        button {
+          padding: 6px 12px;
+          font-size: 13px;
+        }
+      }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <body>
+    <div class="nav">
+      <a href="/">Home</a>
+      <a href="/create">Create</a>
+    </div>
+    <br />
+    <h1>Home Page</h1>
+    <br />
+    <table>
+      <tr>
+        <th>Rno</th>
+        <th>Name</th>
+        <th>Marks 1</th>
+        <th>Marks 2</th>
+        <th>Marks 3</th>
+        <th>Delete</th>
+        <th>Edit</th>
+      </tr>
+      %for d in msg:
+      <tr>
+        <td>{{d[0]}}</td>
+        <td>{{d[1]}}</td>
+        <td>{{d[2]}}</td>
+        <td>{{d[3]}}</td>
+        <td>{{d[4]}}</td>
+        <td>
+          <a href="/delete/{{ d[0] }}"><button onclick="return confirm('Are you sure ???')">Delete</button></a>
+        </td>
+        <td><a href="/edit/{{ d[0] }}"><button>Edit</button></a></td>
+      </tr>
+      %end
+    </table>
+  </body>
+</html>
